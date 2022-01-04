@@ -39,8 +39,8 @@ class MainActivity2 : AppCompatActivity() {
         secondsElapsed = sharedPrefs.getInt(SECONDS, 0)
     }
 
-    override fun onPause() {
-        super.onPause()
+    override fun onStop() {
+        super.onStop()
         with(sharedPrefs.edit()) {
             putInt(SECONDS, secondsElapsed)
             apply()

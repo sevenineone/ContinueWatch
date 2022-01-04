@@ -3,18 +3,20 @@ package ru.spbstu.icc.kspt.lab2.continuewatch
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Lifecycle
 
 class MainActivity : AppCompatActivity() {
     private var secondsElapsed: Int = 0
     private lateinit var textSecondsElapsed: TextView
 
-
     private var backgroundThread = Thread {
         while (true) {
-            textSecondsElapsed.post {
-                textSecondsElapsed.text = getString(R.string.text, secondsElapsed++)
+            if (this.lifecycle.currentState == Lifecycle.State.RESUMED) {
+                textSecondsElapsed.post {
+                    textSecondsElapsed.text = getString(R.string.text, secondsElapsed++)
+                }
+                Thread.sleep(1000)
             }
-            Thread.sleep(1000)
         }
     }
 
