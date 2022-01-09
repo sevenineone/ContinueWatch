@@ -34,8 +34,8 @@ class MainActivity2 : AppCompatActivity() {
         textSecondsElapsed = findViewById(R.id.textSecondsElapsed)
     }
 
-    override fun onResume() {
-        super.onResume()
+    override fun onStart() {
+        super.onStart()
         secondsElapsed = sharedPrefs.getInt(SECONDS, 0)
     }
 
